@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="SerialRFIDReader.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SerialRFIDReader"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="deviceListSource"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Left" Margin="32,32,0,0" TextWrapping="Wrap" Text="Serial RFID Reader" VerticalAlignment="Top" RenderTransformOrigin="1.013,0.46" FontSize="36" Width="650" TextAlignment="Center"/>
+        
+        <ListBox x:Name="serialDeviceListBox" ScrollViewer.HorizontalScrollMode="Enabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" Height="175" Margin="32,160,0,0" VerticalAlignment="Top" Width="650" ItemsSource="{Binding Source={StaticResource deviceListSource}}" SelectionChanged="DeviceListSelectionChanged" Background="#FFF2F2F2"  >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Id}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <TextBlock x:Name="selectDeviceTextBox" HorizontalAlignment="Left" Margin="32,128,0,0" TextWrapping="Wrap" Text="Select Device:" VerticalAlignment="Top" RenderTransformOrigin="-0.105,-0.6" Width="650" TextAlignment="Center" FontSize="20"/>
+        <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="712,160,0,0" VerticalAlignment="Top" FontSize="24" Width="137" Click="ConnectButtonClickAction" ToolTipService.ToolTip="Connect to the selected serial device."/>
+        <Button x:Name="disconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="712,235,0,0" VerticalAlignment="Top" FontSize="24" Click="DisconnectButtonClickAction"/>
+        <TextBox x:Name="outputTextBox" HorizontalAlignment="Left" Margin="32,409,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="308" Width="817" FontSize="20" IsReadOnly="True" AcceptsReturn="True"/>
+        <TextBlock x:Name="outputTextBlock" HorizontalAlignment="Left" Margin="32,377,0,0" TextWrapping="Wrap" Text="Output:" VerticalAlignment="Top" Width="817" FontSize="20" TextAlignment="Center"/>
+        <TextBox x:Name="statusTextBox" HorizontalAlignment="Left" Margin="32,722,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="817" FontSize="18" BorderThickness="0"/>
+    </Grid>
+</Page>
